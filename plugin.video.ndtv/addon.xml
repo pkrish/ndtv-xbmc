@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon
+id="plugin.video.ndtv"
+version="0.1"
+name="NDTV 24x7"
+provider-name="pkrish"
+>
+	<requires> 
+		<import addon="xbmc.gui" version="2.11"/>
+		<import addon="xbmc.python" version="1.0" />
+	</requires>
+
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+
+	<extension point="xbmc.addon.metadata">
+		<summary>Watch live ndtv.com stream in XBMC</summary>
+		<description>Watch live ndtv.com stream in XBMC</description>
+		<platform>all</platform>
+	</extension>
+</addon>
