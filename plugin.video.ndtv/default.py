@@ -53,16 +53,17 @@ def VIDEOLINKS(url,name):
                 #parse the video page link
                 vLinkTemp = re.compile('http.*"').findall(videoDiv)
                 vLink = str(str(vLinkTemp[0]).split('"')[0])
-
-                vTitle = vLink
+                
+                #vTitle = vLink
+                
                 #parse the video title
                 #vTitleTemp = re.compile('<a href=".*">.*</a>').findall(videoDiv)
                 #vTitle = str(str(str(vTitleTemp[0]).split('">')[1]).split('<')[0])
-                vTitleTemp = re.compile('<img title=".*"').findall(videoDiv)
+                vTitleTemp = re.compile('title=".*"').findall(videoDiv)
                 vTitle = str(str(vTitleTemp[0]).split('"')[1])
 
                 #parse the video thumbnail 
-                vIconTemp = re.compile('src=".*"').findall(videoDiv)
+                vIconTemp = re.compile('original=".*"').findall(videoDiv)
                 vIcon = str(str(vIconTemp[0]).split('"')[1])
 
                 #parse the video duration
@@ -109,7 +110,7 @@ def get_params():
 
 def addLink(name,url,iconimage):
         ok=True
-        liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+        liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=str(iconimage))
         liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
         return ok
@@ -118,7 +119,7 @@ def addLink(name,url,iconimage):
 def addDir(name,url,mode,iconimage):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+iconimage
         ok=True
-        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=str(iconimage))
         liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
